@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="//https:www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:insert="header.html"></div>
+
+	<div>
+	
+		<button type= "button"  id = "apicall" onclick="loadComments()"> Comments API </button> 
+	
+	</div>
+	
+	<table width="100%">
+
+		<thead>
+			<tr>
+				<td>PostId</td>
+				<td>Id</td>
+				<td>Name</td>
+				<td>Email</td>
+				<td>Body</td>
+			</tr>
+
+		</thead>
+
+		<tbody id="tblbody">
+
+
+
+
+		</tbody>
+
+
+	</table>
+	
+	<script type="text/javascript">
+	
+	function loadComments()
+	{
+		 $('#apicall').click(function(){ 
+		        alert('ajax');
+		         $.ajax({ 
+		             //type: "GET",
+		             // dataType: "json",
+		             url:"https://jsonplaceholder.typicode.com/comments",
+		             success: function(data){        
+		                var post='';
+		                
+		                for(var i=0; i<data.length; i++){
+		                	
+		                	post +='<tr class= "danger">';
+		                	post +='<td>'+data[i].postId+ '</td>';
+							post +='<td>'+data[i].id+'</td>';
+							post +='<td>'+data[i].name+'</td>';
+							post +='<td>'+data[i].email+'</td>';
+							post +='<td>'+data[i].body+'</td>';
+							
+		                	
+		                	
+		                }
+		             }
+		         });
+		    });
+		
+	}
+	
+	</script>
+
+</body>
+</html>
